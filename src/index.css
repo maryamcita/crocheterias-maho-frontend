@@ -1,36 +1,40 @@
-/* Estilos globales y variables de Tema para Crocheterias Maho */
+/* Identidad Visual Oficial — Crocheterias Maho By: Maryam */
 :root {
-  --bg-primary: #fdfbf7;
-  --bg-secondary: #ffffff;
-  --bg-card: #ffffff;
-  --text-primary: #2d3142;
-  --text-secondary: #4f5d75;
-  --border-color: #e5e5e5;
-  --accent-color: #e85d75;
-  --accent-hover: #d0465e;
-  --accent-light: #fbebee;
-  --primary-brand: #d88373;
-  --badge-bg: #f7d6c8;
-  --badge-text: #964234;
-  --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  --radius: 12px;
-  --transition: all 0.3s ease;
+  --bg-primary: #FAF6F0;
+  --bg-secondary: #F4EBE1;
+  --bg-card: #FFFFFF;
+  --text-primary: #4A3B32;
+  --text-secondary: #7A695D;
+  --border-color: #E8DCCF;
+  --accent-color: #C87A65; /* Terracota cálido */
+  --accent-hover: #B26551;
+  --accent-light: #F7EBE1;
+  --rose-accent: #D46A7E;  /* Rosa suave crochet */
+  --sage-accent: #788A68;  /* Verde botánico */
+  --badge-bg: #F4E4D7;
+  --badge-text: #8C4E3D;
+  --shadow: 0 4px 20px rgba(138, 90, 74, 0.08);
+  --radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', sans-serif;
 }
 
 .dark {
-  --bg-primary: #12141d;
-  --bg-secondary: #1a1d2a;
-  --bg-card: #222636;
-  --text-primary: #f4f5f7;
-  --text-secondary: #a0aec0;
-  --border-color: #2d3748;
-  --accent-color: #ff758c;
-  --accent-hover: #ff5270;
-  --accent-light: #3d1e28;
-  --primary-brand: #e07a5f;
-  --badge-bg: #4a2820;
-  --badge-text: #ffb4a2;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --bg-primary: #1C1714;
+  --bg-secondary: #27211D;
+  --bg-card: #2F2823;
+  --text-primary: #F7EFE8;
+  --text-secondary: #CBBAB0;
+  --border-color: #423832;
+  --accent-color: #E08E79;
+  --accent-hover: #F0A28E;
+  --accent-light: #3D2C24;
+  --rose-accent: #E58699;
+  --sage-accent: #95A885;
+  --badge-bg: #4A332B;
+  --badge-text: #F7C5B8;
+  --shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -40,7 +44,7 @@
 }
 
 body {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -54,7 +58,6 @@ body {
   min-height: 100vh;
 }
 
-/* Layout Container */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -66,14 +69,14 @@ body {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.5rem;
 }
 
 /* Navbar */
 .navbar {
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -91,22 +94,32 @@ body {
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   text-decoration: none;
   color: var(--text-primary);
-  font-weight: 700;
-  font-size: 1.3rem;
 }
 
-.nav-brand img {
-  width: 32px;
-  height: 32px;
+.nav-brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--accent-color);
+}
+
+.nav-brand-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   list-style: none;
 }
 
@@ -114,42 +127,45 @@ body {
   text-decoration: none;
   color: var(--text-secondary);
   font-weight: 500;
-  padding: 0.5rem 0.8rem;
-  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
   transition: var(--transition);
 }
 
 .nav-link:hover, .nav-link.active {
   color: var(--accent-color);
   background-color: var(--accent-light);
+  font-weight: 600;
 }
 
 /* Toggle Theme Button */
 .btn-theme {
-  background: transparent;
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  padding: 0.5rem 0.8rem;
+  padding: 0.45rem 0.9rem;
   border-radius: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  font-family: inherit;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
   transition: var(--transition);
 }
 
 .btn-theme:hover {
   border-color: var(--accent-color);
-  background-color: var(--accent-light);
+  color: var(--accent-color);
 }
 
 /* Footer */
 .footer {
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
   color: var(--text-secondary);
   margin-top: auto;
@@ -164,17 +180,25 @@ body {
   align-items: center;
 }
 
-/* Header de Componente / Título */
+.footer-brand {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+/* Page Headers */
 .page-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 
 .page-title {
-  font-size: 2.2rem;
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .page-subtitle {
@@ -182,11 +206,51 @@ body {
   font-size: 1.05rem;
 }
 
+/* Banner Principal */
+.hero-banner {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--accent-light));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 3.5rem 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-tag {
+  display: inline-block;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.hero-title span {
+  color: var(--accent-color);
+  font-style: italic;
+}
+
 /* Grid de Productos */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.8rem;
+  gap: 2rem;
 }
 
 .product-card {
@@ -201,12 +265,13 @@ body {
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(138, 90, 74, 0.15);
 }
 
 .card-img-container {
   width: 100%;
-  height: 200px;
+  height: 230px;
   background-color: var(--accent-light);
   overflow: hidden;
   position: relative;
@@ -216,10 +281,15 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .card-img {
+  transform: scale(1.05);
 }
 
 .card-body {
-  padding: 1.25rem;
+  padding: 1.4rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -229,24 +299,27 @@ body {
   align-self: flex-start;
   background-color: var(--badge-bg);
   color: var(--badge-text);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
   border-radius: 20px;
   margin-bottom: 0.75rem;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .card-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
 }
 
 .card-desc {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  margin-bottom: 1.25rem;
   flex: 1;
 }
 
@@ -255,26 +328,26 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding-top: 0.75rem;
+  padding-top: 0.85rem;
   border-top: 1px solid var(--border-color);
 }
 
 .card-price {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--accent-color);
 }
 
-/* Buttons */
+/* Botones */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 8px;
+  padding: 0.75rem 1.6rem;
+  border-radius: 25px;
   font-weight: 600;
-  font-family: inherit;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   cursor: pointer;
   border: none;
@@ -285,34 +358,38 @@ body {
 .btn-primary {
   background-color: var(--accent-color);
   color: #ffffff;
+  box-shadow: 0 4px 12px rgba(200, 122, 101, 0.3);
 }
 
 .btn-primary:hover {
   background-color: var(--accent-hover);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background-color: transparent;
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  background-color: var(--border-color);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .btn-danger {
-  background-color: #ef4444;
+  background-color: #E56B6B;
   color: white;
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.85rem;
   font-size: 0.85rem;
+  border-radius: 15px;
 }
 
 .btn-danger:hover {
-  background-color: #dc2626;
+  background-color: #d35252;
 }
 
-/* Forms */
+/* Formularios */
 .form-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -338,12 +415,12 @@ body {
 
 .form-input, .form-select, .form-textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
   border: 1px solid var(--border-color);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: inherit;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   transition: var(--transition);
 }
@@ -375,40 +452,18 @@ body {
   text-align: center;
 }
 
-/* Banner Home */
-.hero-banner {
-  background: linear-gradient(135deg, var(--accent-light), var(--bg-secondary));
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 3.5rem 2rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  box-shadow: var(--shadow);
-}
-
-.hero-title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.hero-title span {
-  color: var(--accent-color);
-}
-
 /* Categorias Filter Pills */
 .filter-container {
   display: flex;
   gap: 0.75rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
 }
 
 .filter-pill {
-  padding: 0.5rem 1.2rem;
-  border-radius: 20px;
+  padding: 0.55rem 1.4rem;
+  border-radius: 25px;
   border: 1px solid var(--border-color);
   background-color: var(--bg-card);
   color: var(--text-secondary);
@@ -421,4 +476,5 @@ body {
   background-color: var(--accent-color);
   color: white;
   border-color: var(--accent-color);
+  box-shadow: 0 4px 12px rgba(200, 122, 101, 0.25);
 }

@@ -4,8 +4,11 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p><strong>Crocheterias Maho</strong> — Tejidos artesanales hechos con amor ❤️</p>
-        <p>© {new Date().getFullYear()} CESDE - Desarrollo Web 2 / Momento 2 SPA. Todos los derechos reservados.</p>
+        <div className="footer-brand">Crocheterias Maho — By: Maryam</div>
+        <p style={{ fontSize: '0.95rem' }}>Tejidos hechos a mano con amor ❤️ · Instagram: <strong>@_crocheteriasmaho</strong></p>
+        <p style={{ fontSize: '0.85rem', opacity: '0.8' }}>
+          © {new Date().getFullYear()} CESDE - Proyecto Integrador / Desarrollo Web 2.
+        </p>
       </div>
     </footer>
   );

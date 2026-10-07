@@ -9,8 +9,11 @@ const Navbar = () => {
     <header className="navbar">
       <div className="nav-container">
         <NavLink to="/" className="nav-brand">
-          <img src="/favicon.svg" alt="Crocheterias Maho Logo" />
-          <span>Crocheterias Maho</span>
+          <img src="/favicon.svg" alt="Crocheterias Maho Logo" width="38" height="38" />
+          <div>
+            <div className="nav-brand-title">Crocheterias Maho</div>
+            <div className="nav-brand-subtitle">By: Maryam</div>
+          </div>
         </NavLink>
 
         <ul className="nav-links">
