@@ -3,55 +3,103 @@ import React, { createContext, useState } from 'react';
 // 1. Crear el Contexto Global de Productos
 export const ProductoContext = createContext();
 
-// Catálogo real de productos inspirado en el Instagram oficial @_crocheteriasmaho
+// Catálogo de productos extraído directamente de las publicaciones reales de @_crocheteriasmaho
 const productosIniciales = [
   {
     id: 1,
     nombre: 'Perrito Amigurumi Personalizado',
     categoria: 'Amigurumi',
     precio: 55000,
-    imagenUrl: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=600&q=80',
-    descripcion: 'Perrito tejido a mano personalizado con pañuelo tejido. Hecho con hilo de algodón hipoalergénico.'
+    imagenUrl: '/images/perrito-randy.jpg',
+    descripcion: 'Perrito tejidito a mano personalizado con pañuelo turquesa. Hecho con hilo de algodón 100% hipoalergénico.'
   },
   {
     id: 2,
-    nombre: 'Llavero Moño para Hidratante',
+    nombre: 'Llavero Moño para Hidratante de Labios',
     categoria: 'Prendas',
     precio: 25000,
-    imagenUrl: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80',
-    descripcion: 'Llavero con moño tejido a crochet diseñado especialmente para guardar tu bálsamo o hidratante de labios.'
+    imagenUrl: '/images/llavero-mono.jpg',
+    descripcion: 'Llavero con moño tejido diseñado para guardar y llevar siempre contigo tu bálsamo o hidratante de labios.'
   },
   {
     id: 3,
     nombre: 'Flor para el Cabello Tejida',
     categoria: 'Prendas',
     precio: 18000,
-    imagenUrl: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80',
-    descripcion: 'Hermoso accesorio de flor rosa tejido a mano para lucir en peinados casuales y elegantes.'
+    imagenUrl: '/images/flor-cabello.jpg',
+    descripcion: 'Hermosa flor rosa tejida a mano para lucir como accesorio único en tu cabello.'
   },
   {
     id: 4,
     nombre: 'Carterita Mini Tejida de Colores',
     categoria: 'Prendas',
     precio: 38000,
-    imagenUrl: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80',
-    descripcion: 'Monedero / carterita con cierre metálico tejido en combinación de hilos matizados multicolor.'
+    imagenUrl: '/images/carterita-mini.jpg',
+    descripcion: 'Carterita / monedero tejido con zíper en combinación de hermosos hilos matizados de colores.'
   },
   {
     id: 5,
-    nombre: 'Pulpo Reversible Amigurumi',
+    nombre: 'Perrito Pinscher Amigurumi',
     categoria: 'Amigurumi',
-    precio: 35000,
-    imagenUrl: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80',
-    descripcion: 'Pulpo de emociones tejido a mano en hilo súper suave al tacto.'
+    precio: 52000,
+    imagenUrl: '/images/perrito-pinscher.jpg',
+    descripcion: 'Amigurumi de perrito tipo pinscher tejido con saquito rojo y azul a medida.'
   },
   {
     id: 6,
-    nombre: 'Cojín Decorativo Boho Tejido',
-    categoria: 'Hogar',
-    precio: 68000,
-    imagenUrl: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80',
-    descripcion: 'Funda de cojín artesanal tejida con textura y flecos para espacios acogedores.'
+    nombre: 'Pulpo Reversible Pastel',
+    categoria: 'Amigurumi',
+    precio: 35000,
+    imagenUrl: '/images/pulpo-reversible.jpg',
+    descripcion: 'Pulpo tejido con hilos en tonos pastel súper suaves al tacto.'
+  },
+  {
+    id: 7,
+    nombre: 'Charm Tejido de Corazón para Celular',
+    categoria: 'Prendas',
+    precio: 15000,
+    imagenUrl: '/images/charm-corazon.jpg',
+    descripcion: 'Lindo colgante tejido en forma de corazón para decorar tu funda de celular.'
+  },
+  {
+    id: 8,
+    nombre: 'Llavero Cabeza de Llamita',
+    categoria: 'Amigurumi',
+    precio: 22000,
+    imagenUrl: '/images/llavero-llama.jpg',
+    descripcion: 'Tierna llamita tejida en hilo beige ideal para tus llaves o maleta.'
+  },
+  {
+    id: 9,
+    nombre: 'Bolso Lila & Morado Tejido',
+    categoria: 'Prendas',
+    precio: 75000,
+    imagenUrl: '/images/bolso-lila.jpg',
+    descripcion: 'Bolso estilo tote bag tejido a crochet con volante en hermosos tonos lila y lavanda.'
+  },
+  {
+    id: 10,
+    nombre: 'Elefante Amigurumi',
+    categoria: 'Amigurumi',
+    precio: 48000,
+    imagenUrl: '/images/elefante-amigurumi.jpg',
+    descripcion: 'Elefantito tejido en hilo gris, el compañero perfecto para tejer o regalar.'
+  },
+  {
+    id: 11,
+    nombre: 'Prendedor Mazorca Tejida',
+    categoria: 'Prendas',
+    precio: 16000,
+    imagenUrl: '/images/mazorca-tejida.jpg',
+    descripcion: 'Accesorio / prendedor original con forma de maíz / mazorca tejida en hilo verde y amarillo.'
+  },
+  {
+    id: 12,
+    nombre: 'Aretes Tejidos de Flores & Cuadritos',
+    categoria: 'Prendas',
+    precio: 20000,
+    imagenUrl: '/images/aretes-tejidos.jpg',
+    descripcion: 'Aretes artesanales livianos tejidos en combinaciones alegres de color.'
   }
 ];
 
@@ -59,7 +107,6 @@ const productosIniciales = [
 export const ProductoProvider = ({ children }) => {
   const [productos, setProductos] = useState(productosIniciales);
 
-  // Agregar nuevo producto al estado global de Context API
   const agregarProducto = (nuevoProducto) => {
     const productoConId = {
       ...nuevoProducto,
@@ -69,7 +116,6 @@ export const ProductoProvider = ({ children }) => {
     setProductos((prev) => [productoConId, ...prev]);
   };
 
-  // Eliminar producto del estado global
   const eliminarProducto = (id) => {
     setProductos((prev) => prev.filter((p) => p.id !== id));
   };
