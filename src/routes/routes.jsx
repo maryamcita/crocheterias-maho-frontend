@@ -10,6 +10,8 @@ import Home from '../pages/Home';
 import Catalogo from '../pages/Catalogo';
 import CrearProducto from '../pages/CrearProducto';
 import Login from '../pages/Login';
+import EditarProducto from '../pages/EditarProducto';
+import NotFound from '../pages/NotFound';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +22,9 @@ const AppRoutes = () => {
           <Route index element={<Home />} />
           <Route path="catalogo" element={<Catalogo />} />
           <Route path="crear-producto" element={<CrearProducto />} />
+          <Route path="editar-producto/:id" element={<EditarProducto />} />
+          {/* Ruta 404: cualquier ruta que no exista */}
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         {/* Rutas de autenticación con AuthLayout */}
