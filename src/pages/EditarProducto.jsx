@@ -1,49 +1,61 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { ProductoContext } from '../context/ProductoContext';
 import usePageTitle from '../hooks/usePageTitle';
 
-const CrearProducto = () => {
-  usePageTitle('Crear Producto');
+// Formulario controlado para EDITAR un producto (la "U" del CRUD)
+const EditarProducto = () => {
+  usePageTitle('Editar Producto');
 
-  const { agregarProducto } = useContext(ProductoContext);
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { productos, editarProducto } = useContext(ProductoContext);
 
-  // Estado controlado del formulario
-  const [formData, setFormData] = useState({
-    nombre: '',
-    categoria: 'Amigurumi',
-    precio: '',
-    imagenUrl: '',
-    descripcion: ''
-  });
+  // Buscar el producto en el estado global por su id (viene en la URL)
+  const producto = productos.find((p) => String(p.id) === id);
 
+  // El formulario arranca con los datos actuales del producto
+  const [formData, setFormData] = useState(
+    producto
+      ? {
+          nombre: producto.nombre,
+          categoria: producto.categoria,
+          precio: producto.precio,
+          imagenUrl: producto.imagenUrl || '',
+          descripcion: producto.descripcion || ''
+        }
+      : null
+  );
   const [mensaje, setMensaje] = useState('');
 
-  // Manejador genérico para inputs controlados
+  if (!producto || !formData) {
+    return (
+      <div style={{ textAlign: 'center', padding: '3rem' }}>
+        <h1 className="page-title">Producto no encontrado</h1>
+        <Link to="/catalogo" className="btn btn-primary" style={{ marginTop: '1rem' }}>
+          ← Volver al catálogo
+        </Link>
+      </div>
+    );
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Manejador del envío de formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.nombre.trim() || !formData.precio) {
+    if (!String(formData.nombre).trim() || !formData.precio) {
       setMensaje('❌ Por favor completa los campos obligatorios.');
       return;
     }
 
-    // Agregar producto al estado global de Context API (Simulación Nivel 3)
-    agregarProducto(formData);
+    // Actualizar el producto en el estado global (Simulación Nivel 3)
+    editarProducto(producto.id, formData);
+    setMensaje('✅ ¡Producto actualizado! Redirigiendo al catálogo...');
 
-    setMensaje('✅ ¡Producto creado exitosamente! Redirigiendo al catálogo...');
-
-    // Redirigir al catálogo para ver el nuevo producto agregado en el estado global
     setTimeout(() => {
       navigate('/catalogo');
     }, 1200);
@@ -52,8 +64,8 @@ const CrearProducto = () => {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Crear Nuevo Producto</h1>
-        <p className="page-subtitle">Formulario controlado con actualización en tiempo real en Context API</p>
+        <h1 className="page-title">Editar Producto</h1>
+        <p className="page-subtitle">Modifica los datos y se actualizarán en el estado global (Context API)</p>
       </div>
 
       <div className="form-card">
@@ -75,15 +87,12 @@ const CrearProducto = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="form-label" htmlFor="nombre">
-              Nombre del Producto *
-            </label>
+            <label className="form-label" htmlFor="nombre">Nombre del Producto *</label>
             <input
               type="text"
               id="nombre"
               name="nombre"
               className="form-input"
-              placeholder="Ej. Pulpo Amigurumi Reversible"
               value={formData.nombre}
               onChange={handleChange}
               required
@@ -91,9 +100,7 @@ const CrearProducto = () => {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="categoria">
-              Categoría *
-            </label>
+            <label className="form-label" htmlFor="categoria">Categoría *</label>
             <select
               id="categoria"
               name="categoria"
@@ -108,15 +115,12 @@ const CrearProducto = () => {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="precio">
-              Precio (COP) *
-            </label>
+            <label className="form-label" htmlFor="precio">Precio (COP) *</label>
             <input
               type="number"
               id="precio"
               name="precio"
               className="form-input"
-              placeholder="Ej. 35000"
               value={formData.precio}
               onChange={handleChange}
               min="0"
@@ -125,42 +129,41 @@ const CrearProducto = () => {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="imagenUrl">
-              URL de la Imagen (Opcional)
-            </label>
+            <label className="form-label" htmlFor="imagenUrl">URL de la Imagen (Opcional)</label>
             <input
-              type="url"
+              type="text"
               id="imagenUrl"
               name="imagenUrl"
               className="form-input"
-              placeholder="https://ejemplo.com/imagen.jpg"
               value={formData.imagenUrl}
               onChange={handleChange}
             />
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="descripcion">
-              Descripción del Producto
-            </label>
+            <label className="form-label" htmlFor="descripcion">Descripción del Producto</label>
             <textarea
               id="descripcion"
               name="descripcion"
               rows="3"
               className="form-textarea"
-              placeholder="Describe los detalles de confección, lana o tamaño..."
               value={formData.descripcion}
               onChange={handleChange}
             ></textarea>
           </div>
 
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-            Guardar y Publicar Producto 🧶
-          </button>
+          <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+            <Link to="/catalogo" className="btn btn-secondary" style={{ flex: 1, textAlign: 'center' }}>
+              Cancelar
+            </Link>
+            <button type="submit" className="btn btn-primary" style={{ flex: 1 }}>
+              Guardar Cambios ✏️
+            </button>
+          </div>
         </form>
       </div>
     </div>
   );
 };
 
-export default CrearProducto;
+export default EditarProducto;

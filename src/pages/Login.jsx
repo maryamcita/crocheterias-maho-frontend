@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Login = () => {
+  usePageTitle('Iniciar Sesión');
+
   const navigate = useNavigate();
 
   // Estado controlado del formulario de Login

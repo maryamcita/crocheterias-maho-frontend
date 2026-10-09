@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { ProductoContext } from '../context/ProductoContext';
 import { Link } from 'react-router-dom';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Catalogo = () => {
+  usePageTitle('Catálogo');
+
   const { productos, eliminarProducto } = useContext(ProductoContext);
   const [categoriaFiltro, setCategoriaFiltro] = useState('Todos');
 
@@ -60,6 +63,14 @@ const Catalogo = () => {
                 <p className="card-desc">{prod.descripcion || 'Sin descripción disponible.'}</p>
                 <div className="card-footer">
                   <span className="card-price">${Number(prod.precio).toLocaleString('es-CO')} COP</span>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <Link
+                    to={`/editar-producto/${prod.id}`}
+                    className="btn btn-secondary"
+                    title="Editar producto del estado global"
+                  >
+                    ✏️ Editar
+                  </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => eliminarProducto(prod.id)}
@@ -67,6 +78,7 @@ const Catalogo = () => {
                   >
                     🗑️ Eliminar
                   </button>
+                  </div>
                 </div>
               </div>
             </article>

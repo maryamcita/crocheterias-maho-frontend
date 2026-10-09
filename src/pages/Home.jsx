@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Home = () => {
+  usePageTitle('Inicio');
+
   return (
     <div>
       {/* Banner Principal con la marca de Maryam */}

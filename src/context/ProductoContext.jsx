@@ -116,12 +116,22 @@ export const ProductoProvider = ({ children }) => {
     setProductos((prev) => [productoConId, ...prev]);
   };
 
+  const editarProducto = (id, datosActualizados) => {
+    setProductos((prev) =>
+      prev.map((p) =>
+        p.id === id
+          ? { ...p, ...datosActualizados, id, precio: Number(datosActualizados.precio) }
+          : p
+      )
+    );
+  };
+
   const eliminarProducto = (id) => {
     setProductos((prev) => prev.filter((p) => p.id !== id));
   };
 
   return (
-    <ProductoContext.Provider value={{ productos, agregarProducto, eliminarProducto }}>
+    <ProductoContext.Provider value={{ productos, agregarProducto, editarProducto, eliminarProducto }}>
       {children}
     </ProductoContext.Provider>
   );
