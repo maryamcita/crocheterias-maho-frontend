@@ -58,6 +58,9 @@ crocheterias-maho-frontend/
 │   │   ├── Navbar.jsx            # Navegación y selector de Tema Claro/Oscuro
 │   │   └── Footer.jsx            # Pie de página del sitio
 │   │
+│   ├── hooks/                    # Hooks personalizados
+│   │   └── usePageTitle.js       # Cambia el nombre de la página en cada componente
+│   │
 │   ├── context/                  # Estado Global (Context API)
 │   │   ├── ThemeContext.jsx      # Proveedor de Tema (Claro / Oscuro)
 │   │   └── ProductoContext.jsx   # Proveedor de Estado CRUD de Productos (Nivel 3)
@@ -70,6 +73,8 @@ crocheterias-maho-frontend/
 │   │   ├── Home.jsx              # Pantalla de bienvenida
 │   │   ├── Catalogo.jsx          # Listado y filtrado de productos
 │   │   ├── CrearProducto.jsx     # Formulario controlado de registro
+│   │   ├── EditarProducto.jsx    # Formulario controlado de edición (Update del CRUD)
+│   │   ├── NotFound.jsx          # Página 404 para rutas inexistentes
 │   │   └── Login.jsx             # Formulario controlado de autenticación
 │   │
 │   ├── routes/                   # Enrutamiento de la aplicación
@@ -89,12 +94,41 @@ crocheterias-maho-frontend/
 ## ⭐ Funcionalidades Clave Implementadas
 
 1. **Navegación SPA (`react-router-dom`)**:
-   Rutas configuradas en `routes.jsx` entre Inicio (`/`), Catálogo (`/catalogo`), Crear Producto (`/crear-producto`) y Login (`/login`) sin recarga de página.
+   Rutas configuradas en `routes.jsx` entre Inicio (`/`), Catálogo (`/catalogo`), Crear Producto (`/crear-producto`), Editar Producto (`/editar-producto/:id`), Login (`/login`) y página 404 (`*`) sin recarga de página.
 2. **Formularios Controlados**:
-   Formularios en `CrearProducto.jsx` y `Login.jsx` con binding bidireccional en el estado local de React (`useState`).
+   Formularios en `CrearProducto.jsx`, `EditarProducto.jsx` y `Login.jsx` con binding bidireccional en el estado local de React (`useState`).
 3. **Estado Global con Context API**:
-   - `ProductoContext`: Permite crear nuevos productos desde el formulario y reflejarlos inmediatamente en la vista del catálogo (Simulación Nivel 3).
+   - `ProductoContext`: CRUD completo simulado — **crear** (`agregarProducto`), **listar** (`productos`), **editar** (`editarProducto`) y **eliminar** (`eliminarProducto`). Los cambios se reflejan inmediatamente en el catálogo (Simulación Nivel 3).
    - `ThemeContext`: Conmutador de Tema Claro / Tema Oscuro persistente en `localStorage`.
 4. **Layouts de Arquitectura**:
    - `MainLayout`: Estructura principal con `Navbar` y `Footer`.
    - `AuthLayout`: Estructura limpia para pantallas de acceso.
+5. **Nombre de la página en cada componente**:
+   Cada pantalla usa el hook `usePageTitle` para mostrar su nombre en la pestaña del navegador (ej. *Catálogo | Crocheterias Maho*).
+
+---
+
+## 🗺️ Listado Total de Componentes del Proyecto (proyectado)
+
+| Componente | Tipo | Descripción | Estado |
+|---|---|---|---|
+| `MainLayout` | Layout | Navbar + contenido + Footer | ✅ Hecho |
+| `AuthLayout` | Layout | Plantilla para Login / Registro | ✅ Hecho |
+| `Navbar` | Componente | Navegación y botón de tema | ✅ Hecho |
+| `Footer` | Componente | Pie de página | ✅ Hecho |
+| `ThemeContext` | Context | Tema claro / oscuro | ✅ Hecho |
+| `ProductoContext` | Context | Estado global del CRUD de productos | ✅ Hecho |
+| `Home` | Página | Pantalla de bienvenida | ✅ Hecho |
+| `Catalogo` | Página | Listado y filtro de productos | ✅ Hecho |
+| `CrearProducto` | Página | Formulario de creación | ✅ Hecho |
+| `EditarProducto` | Página | Formulario de edición | ✅ Hecho |
+| `Login` | Página | Inicio de sesión | ✅ Hecho |
+| `NotFound` | Página | Error 404 | ✅ Hecho |
+| `ProductCard` | Componente | Tarjeta reutilizable de producto | 🔜 Proyectado |
+| `DetalleProducto` | Página | Vista con toda la información de un producto | 🔜 Proyectado |
+| `Registro` | Página | Formulario de registro de usuarios | 🔜 Proyectado |
+| `AuthContext` | Context | Usuario autenticado y cierre de sesión | 🔜 Proyectado |
+| `Carrito` | Página | Productos seleccionados para comprar | 🔜 Proyectado |
+| `CarritoContext` | Context | Estado global del carrito | 🔜 Proyectado |
+| `RutaProtegida` | Componente | Restringe Crear/Editar a usuarios autenticados | 🔜 Proyectado |
+| `Contacto` | Página | Formulario de contacto / pedidos personalizados | 🔜 Proyectado |
