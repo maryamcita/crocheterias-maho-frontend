@@ -37,7 +37,7 @@ const Catalogo = () => {
 
       {/* Grid de Productos */}
       {productosFiltrados.length === 0 ? (
-        <div style={{ textAlignment: 'center', padding: '3rem', textAlign: 'center' }}>
+        <div style={{ padding: '3rem', textAlign: 'center' }}>
           <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>No hay productos registrados en esta categoría.</p>
           <Link to="/crear-producto" className="btn btn-primary" style={{ marginTop: '1rem' }}>
             + Crear Primer Producto
@@ -49,11 +49,11 @@ const Catalogo = () => {
             <article key={prod.id} className="product-card">
               <div className="card-img-container">
                 <img
-                  src={prod.imagenUrl || 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80'}
+                  src={prod.imagenUrl || 'https://unsplash.com'}
                   alt={prod.nombre}
                   className="card-img"
                   onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80';
+                    e.target.src = 'https://unsplash.com';
                   }}
                 />
               </div>
@@ -62,7 +62,7 @@ const Catalogo = () => {
                 <h3 className="card-title">{prod.nombre}</h3>
                 <p className="card-desc">{prod.descripcion || 'Sin descripción disponible.'}</p>
                 <div className="card-footer">
-                  <span className="card-price">${Number(prod.precio).toLocaleString('es-CO')} COP</span>
+                  <span className="card-price">\${Number(prod.precio).toLocaleString('es-CO')} COP</span>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                   <Link
                     to={`/editar-producto/${prod.id}`}
